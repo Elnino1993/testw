@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Stable Coin (SSC) - Earn Daily Rewards!</title>
+    <meta name="description"
+        content="Earn SSC coins daily! No wallet connection needed. Build your streak, claim rewards, and grow your balance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Floating Social Icons -->
+        <div class="floating-icons">
+            <img src="assets/social-icons.png" alt="Social Icons" class="float-social-strip">
+            <div class="float-icon heart">❤️</div>
+            <div class="float-icon fire-float"><img src="assets/fire.png" alt="Fire" class="float-fire-img"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="coin-logo">
+                    <img src="assets/coin.png" alt="SSC Coin" class="coin-logo-img">
+                </div>
+                <div class="logo-text">
+                    <h1>Social Stable Coin</h1>
+                    <span class="ticker">$SSC</span>
+                </div>
+            </div>
+            <div class="balance-display">
+                <span class="balance-label">Your Balance</span>
+                <span class="balance-amount" id="totalBalance">0.00</span>
+                <span class="balance-ticker">SSC</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Streak Section -->
+            <section class="streak-section">
+                <div class="streak-card glass-card">
+                    <div class="streak-header">
+                        <img src="assets/fire.png" alt="Fire" class="fire-icon">
+                        <div class="streak-info">
+                            <h2>Daily Streak</h2>
+                            <p class="streak-count">Day <span id="currentStreak">0</span></p>
+                        </div>
+                        <div class="multiplier-badge" id="multiplierBadge">1x</div>
+                    </div>
+
+                    <div class="streak-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                            <div class="milestone" data-day="1" style="left: 0%">
+                                <span class="milestone-icon bronze">🥉</span>
+                                <span class="milestone-label">Day 1</span>
+                            </div>
+                            <div class="milestone" data-day="7" style="left: 33%">
+                                <span class="milestone-icon silver">🥈</span>
+                                <span class="milestone-label">Day 7</span>
+                            </div>
+                            <div class="milestone" data-day="30" style="left: 66%">
+                                <span class="milestone-icon gold">🥇</span>
+                                <span class="milestone-label">Day 30</span>
+                            </div>
+                            <div class="milestone" data-day="100" style="left: 100%">
+                                <span class="milestone-icon diamond">💎</span>
+                                <span class="milestone-label">Day 100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rewards-preview">
+                        <div class="reward-tier">
+                            <span class="tier-badge bronze">🥉</span>
+                            <span class="tier-reward">+10 SSC</span>
+                        </div>
+                        <div class="reward-tier">
+                            <span class="tier-badge silver">🥈</span>
+                            <span class="tier-reward">+25 SSC</span>
+                        </div>
+                        <div class="reward-tier">
+                            <span class="tier-badge gold">🥇</span>
+                            <span class="tier-reward">+50 SSC</span>
+                        </div>
+                        <div class="reward-tier">
+                            <span class="tier-badge diamond">💎</span>
+                            <span class="tier-reward">+100 SSC</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Claim Section -->
+            <section class="claim-section">
+                <div class="claim-card glass-card">
+                    <div class="claim-content">
+                        <div class="coin-animation" id="coinContainer">
+                            <div class="main-coin" id="mainCoin">
+                                <span class="coin-face">🐕</span>
+                            </div>
+                            <div class="coin-particles" id="particles"></div>
+                        </div>
+
+                        <div class="claim-info">
+                            <h2>Daily Reward</h2>
+                            <p class="reward-amount">
+                                <span id="rewardAmount">10</span> SSC
+                                <span class="bonus-text" id="bonusText"></span>
+                            </p>
+                        </div>
+
+                        <button class="claim-btn" id="claimBtn">
+                            <span class="btn-text">CLAIM NOW</span>
+                            <img src="assets/gift.png" alt="Gift" class="btn-gift-icon">
+                        </button>
+
+                        <div class="cooldown-timer" id="cooldownTimer" style="display: none;">
+                            <span class="timer-text">Next claim in: <span id="timerValue">00:00:00</span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendar Section -->
+            <section class="calendar-section">
+                <div class="calendar-card glass-card">
+                    <h3>📅 Weekly Progress</h3>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Days will be generated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Address Section -->
+            <section class="address-section">
+                <div class="address-card glass-card">
+                    <div class="no-wallet-badge">
+                        <span class="check-icon">✅</span>
+                        <span>No Wallet Connection Required!</span>
+                    </div>
+                    <div class="address-input-group">
+                        <label for="walletAddress">Enter Your Wallet Address</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="walletAddress" placeholder="0x..." maxlength="42">
+                            <button class="save-btn" id="saveAddressBtn">Save</button>
+                        </div>
+                        <p class="address-hint">Your rewards will be sent to this address</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card glass-card">
+                        <span class="stat-icon">📊</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalClaimed">0</span>
+                            <span class="stat-label">Total Claimed</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <span class="stat-icon">🏆</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="bestStreak">0</span>
+                            <span class="stat-label">Best Streak</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <span class="stat-icon">⚡</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="currentMultiplier">1x</span>
+                            <span class="stat-label">Multiplier</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Share -->
+            <section class="social-section">
+                <div class="social-card glass-card">
+                    <h3>📢 Share & Earn More!</h3>
+                    <p>Share your streak on social media for bonus rewards!</p>
+                    <div class="social-buttons">
+                        <button class="social-btn twitter-btn">
+                            <span>𝕏</span> Share
+                        </button>
+                        <button class="social-btn insta-btn">
+                            <span>📷</span> Story
+                        </button>
+                        <button class="social-btn tiktok-btn">
+                            <span>♪</span> Post
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Toast Notification -->
+        <div class="toast" id="toast">
+            <span class="toast-icon">🎉</span>
+            <span class="toast-message" id="toastMessage"></span>
+        </div>
+
+        <!-- Confetti Container -->
+        <div class="confetti-container" id="confettiContainer"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
